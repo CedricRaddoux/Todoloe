@@ -35,12 +35,11 @@ try {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Karla|Lexend+Deca&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<h1 class="header">Login</h1>
 
 <div class="container">
     <div class="alert-warning"><?php if (isset($error)) {
@@ -48,6 +47,9 @@ try {
 } ?></div>
 
     <form action="" method="post">
+    <a href=login.php><img class=logo src=images/logo.png alt=logo></a>
+    <h1>Welcome to Todoloe</h1>
+    <h1 class="header">Login</h1>
         <div class="form-field">
             <label for="email">Email</label>
             <input class="inputfields" type="text" name="email" id="email">

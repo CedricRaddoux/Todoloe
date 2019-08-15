@@ -38,7 +38,7 @@ class User
     }
 
     // EMAIL
-    public function getEmail($Email)
+    public function getEmail()
     {
         return $this->Email;
     }
@@ -52,7 +52,7 @@ class User
     }
 
     // PASSWORD
-    public function getPassword($Password)
+    public function getPassword()
     {
         return $this->Password;
     }
@@ -79,9 +79,11 @@ class User
         $statement->bindparam(":email", $this->Email);
         $statement->bindparam(':password', $this->Password);
 
-        if( strlen($password) > 8){
+       /* 
+       if( strlen($password) > 8){
             throw new Exception("password must be at least 8 character long");
         }
+        */
 
         $options = [
             'cost'=> 12
@@ -98,7 +100,7 @@ class User
     }
 
     // LOGIN
-    public function Login()
+    public function login()
     {
         // connection
         global $conn;
@@ -106,9 +108,8 @@ class User
         $p_password = $this->getPassword();
 
         // Gegevens uit de databank halen
-        $statement = $conn->prepare("SELECT * FROM User where email = :email LIMIT 1");
-        $statement->bindValue(":email", $_SESSION['email']);
-        $statement->execute();
+        $statement = $conn->prepare("SELECT * FROM user where email = :email LIMIT 1");
+        $statement->execute(array( ":email"=>$this->getEmail()));
 
         if ($statement->rowCount() == 1) {
             $currentUser = $statement->fetch(PDO::FETCH_ASSOC);

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand logo" href="index.php"><img src="images/logo.png" alt="todo logo"></a><br>
-    <a class="text-danger nav-link" href="lists.php">Add list</a><br>
-    <a class="text-danger nav-link" href="tasks.php">Add task</a><br>
-    <a class="text-danger nav-link" href="includes/logout.inc.php">Logout</a>
+<nav class=header_nav>
+    <a class="nav_logo" href="index.php"><img src="images/logo.png" alt="Todoloe logo" style="height:50px;"></a>
+    <a class="nav_link" href="list.php">Add list</a>
+    <a class="nav_link" href="task.php">Add task</a>
+    <a class="nav_link" href="includes/logout.inc.php">Logout</a>
 </nav>

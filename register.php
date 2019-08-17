@@ -37,12 +37,13 @@ try {
 </head>
 <body>
 
-<div class="alert-warning"><?php if (isset($error)) {
-    echo htmlspecialchars($error);
-} ?></div>
-
 <div class="container">
 <h1 class="header">Register</h1>
+   
+   <div class="error-popup"><?php if (isset($error)) {
+        echo htmlspecialchars($error);
+        } ?></div>
+        
     <form action="" method="post">
         <div class="form-field">
             <label for="firstname">Firstname</label> <br>
@@ -65,6 +66,7 @@ try {
         </div>
 
         <button class="submitbutton" type="submit">Register</button>
+        <p>Go back to the <a class="register" href="login.php">Login</a> page</p>
     </form>
 </div>
 

@@ -42,20 +42,22 @@ try {
 <body>
 
 <div class="container">
-    <div class="alert-warning"><?php if (isset($error)) {
-    echo htmlspecialchars($error);
-} ?></div>
-
+    
     <form action="" method="post">
     <a href=login.php><img class=logo src=images/logo.png alt=logo></a>
-    <h1>Welcome to Todoloe</h1>
+    <h3>The easiest way to plan your tasks</h3>
     <h1 class="header">Login</h1>
+       
+       <div class="error-popup"><?php if (isset($error)) {
+        echo htmlspecialchars($error);
+        } ?></div>
+       
         <div class="form-field">
-            <label for="email">Email</label>
+            <label for="email">Email</label> <br>
             <input class="inputfields" type="text" name="email" id="email">
         </div>
         <div class="form-field">
-            <label for="password">Password</label>
+            <label for="password">Password</label> <br>
             <input class="inputfields" type="password" name="password" id="password">
         </div>
         <button type="submit" class="submitbutton">Log in</button>

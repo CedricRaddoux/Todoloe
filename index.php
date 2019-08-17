@@ -2,6 +2,11 @@
 
 include_once("classes/Features.class.php");
 
+    session_start();
+        if( !isset($_SESSION['email'])){ //als het niet ge set is
+           header('location: login.php'); 
+        }
+
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -16,11 +21,11 @@ include_once("classes/Features.class.php");
     
 </head>
 <body>
-<?php include_once("includes/nav.inc.php"); ?><br>
+<?php include_once("includes/nav.inc.php"); ?>
 
-<div class="container">
-    
-</div>
+<h1>Welcome back <?php echo $_SESSION['email']; ?></h1>
+
+
 
 </body>
 </html>

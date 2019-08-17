@@ -41,8 +41,16 @@ public function addList()
     public function getLists()
     {
         global $conn;
-        $statement = $conn->prepare("select * from lists");
+        $statement = $conn->prepare("SELECT * FROM lists");
         $statement->execute();
         return $statement->fetchAll();
+    }
+
+    public function deleteList()
+    {
+        global $conn;
+        $statement = $conn->prepare("DELETE FROM lists(name) where name = (:name)");
+        $statement->bindValue(":name", $this->getName());
+        $statement->execute();
     }
 }

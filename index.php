@@ -1,7 +1,4 @@
 <?php
-
-include_once("classes/Features.class.php");
-
     session_start();
         if( !isset($_SESSION['email'])){ //als het niet ge set is
            header('location: login.php'); 

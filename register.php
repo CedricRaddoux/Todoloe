@@ -16,9 +16,12 @@ try {
         $user->setLastname($lastname);
         $user->setEmail($email);
         $user->setPassword($password);
+        $user->setAdmin("0"); // Geen admin dus 0
         $user->register();
 
-        header('Location: login.php');
+        if(!$error){
+         header('Location: login.php');
+        }
     }
 } catch (Exception $e) {
     $error = $e->getMessage();

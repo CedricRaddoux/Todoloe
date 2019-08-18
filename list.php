@@ -1,28 +1,42 @@
 <?php
 
-include_once("classes/Features.class.php");
+include_once("classes/Task.class.php");
+include_once("classes/List.class.php");
 
 try {
     $error="";
 
     if (!empty($_POST)) {
-        if (isset($_POST['save'])) {
-            $name = $_POST['name'];
+        if (isset($_POST['add_list'])) {
+            $name = $_POST['list_title'];
 
-            $list = new Features();
+            $list = new Lists();
             $list->setName($name);
             $list->addList();
 
-        } elseif (isset($_POST['delete'])) {
-                $list = new Features();
-                $list->deleteList();
+        } elseif (isset($_POST['delete_list'])) {
+                $list_id = $_POST['list_id'];
+                $list = new Lists();
+                $list->deleteList($list_id);
             }
         }
+
+        if (!empty($_POST)) {
+            if (isset($_POST['add_task'])) {
+                $task = new Task();
+                $title = $_POST['task_title'];
+                $deadline = $_POST['task_deadline'];
+                $done = 0;
+                $list_id = $_POST['list_id'];
+
+                $task->addTask($title, $deadline, $done, $list_id);
+            }
+            }
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
 
-$feed = new Features();
+$feed = new Lists();
 
 ?><!doctype html>
 <html lang="en">
@@ -51,18 +65,28 @@ $feed = new Features();
         echo htmlspecialchars($error);
         } ?></div>
             <label for="name">Enter the name of the list</label>
-            <input class="inputfields" type="text" name="name" id="name">
+            <input class="inputfields" type="text" name="list_title" id="list_title">
         </div>
 
-        <button class="submitbutton" type="submit" name="save">Add list</button>
+        <button class="submitbutton" type="submit" name="add_list">Add list</button>
         <br>
 
         <div class="form-group">
             
                 <?php foreach ($feed->getLists() as $l): ?>
-                    <p value="<?php echo htmlspecialchars($l["name"]); ?>"><?php echo htmlspecialchars($l["name"]); ?></p>
-                    <input class="btn btn-danger" type="submit" value="delete" name="delete">
+                    <?php foreach ($feed->getTaskByList($l["id"]) as $task):?>
+                        <p><?php echo $task["title"]; ?></p>
+                    <?php endforeach; ?>
+                    <a href="task.php?id=<?php echo $l["id"];?>"> <?php echo htmlspecialchars($l["name"]); ?></a><br>
+                    <form action="" method="post">
+                    <input class="inputfields" type="hidden" name="list_id" value="<?php echo $l["id"];?>">
+                    <input class="inputfields" type="text" name="task_title" id="task_title">
+                    <input class="inputfields" type="date" name="task_deadline" id="task_deadline">
+                    <button class="submitbutton" type="submit" name="add_task">Add task</button>
+                    <button class="submitbutton" type="submit" name="delete_list">Delete list</button>
+                    </form>
                 <?php endforeach; ?>
+                
             
         </div>
 

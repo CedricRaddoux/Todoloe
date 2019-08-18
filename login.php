@@ -18,7 +18,13 @@ try {
 
         if ($user->login()) {
             $_SESSION['email'] = $email;
-            header('location: index.php');
+            foreach ($user->checkIsAdmin() as $u) {
+                if ($u['isAdmin'] == 0) {
+                    header('location: index.php');
+                } else {
+                    header('location: indexAdmin.php');
+                }
+            }
 
         } else {
             $error = "Please fill in all fields.";

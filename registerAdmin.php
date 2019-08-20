@@ -23,7 +23,11 @@ try {
         $user->setPassword($password);
         $user->setAdmin("1"); // Wel admin dus 1
         $user->register();
-    }
+    
+        if(!$error){
+            header('Location: login.php');
+           }
+        }
 } catch (Exception $e) {
     $error = $e->getMessage();
 }

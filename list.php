@@ -8,9 +8,8 @@ try {
 
     if (!empty($_POST)) {
         if (isset($_POST['add_list'])) {
-            $name = $_POST['list_title'];
-
             $list = new Lists();
+            $name = $_POST['list_title'];
             $list->setName($name);
             $list->addList();
 
@@ -28,10 +27,9 @@ try {
                 $deadline = $_POST['task_deadline'];
                 $done = 0;
                 $list_id = $_POST['list_id'];
-
                 $task->addTask($title, $deadline, $done, $list_id);
             }
-            }
+        }
 } catch (Exception $e) {
     $error = $e->getMessage();
 }
@@ -73,11 +71,11 @@ $feed = new Lists();
 
         <div class="form-group">
             
-                <?php foreach ($feed->getLists() as $l): ?>
+        <?php foreach ($feed->getLists() as $l): ?>
                     <?php foreach ($feed->getTaskByList($l["id"]) as $task):?>
                         <p><?php echo $task["title"]; ?></p>
                     <?php endforeach; ?>
-                    <a href="task.php?id=<?php echo $l["id"];?>"> <?php echo htmlspecialchars($l["name"]); ?></a><br>
+                    <p><?php echo $l["id"];?><?php echo htmlspecialchars($l["name"]); ?></p><br>
                     <form action="" method="post">
                     <input class="inputfields" type="hidden" name="list_id" value="<?php echo $l["id"];?>">
                     <input class="inputfields" type="text" name="task_title" id="task_title">

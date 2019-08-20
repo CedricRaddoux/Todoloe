@@ -1,7 +1,6 @@
 <?php
 
-//include_once("includes/no-session.inc.php");
-include_once("classes/Features.class.php");
+include_once("classes/Task.class.php");
 
 
 try {
@@ -12,7 +11,7 @@ try {
         $subject = $_POST['subject'];
         $list = $_POST['list'];
 
-        $task = new Feature();
+        $task = new Task();
         $task->setName($name);
         $task->setDeadline($deadline);
         $task->setSubject($subject);

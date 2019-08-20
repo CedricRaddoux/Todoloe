@@ -72,10 +72,16 @@ class Task
         global $conn;
         $statement = $conn->prepare("INSERT INTO tasks(title, deadline, done, list_id) 
                                     VALUES (:title, :deadline, :done, :list_id)");
+
+        //KIJK NA OF ER AL ZO'N EMAIL BESTAAT
+        if($statement->rowCount() !== 0) { # If rows are found for query
+            throw new Exception("There is already a task with that name"); 
+            }
         $statement->bindValue(":title", $title);
         $statement->bindValue(":deadline", $deadline);
         $statement->bindValue(":done", $done);
         $statement->bindValue(":list_id", $list_id);
+
         $statement->execute();
     }
 }

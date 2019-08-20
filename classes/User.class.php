@@ -10,6 +10,8 @@ class User
     private $Password;
     private $Admin;
 
+    // ***** GET & SET ******  //
+
     // FIRSTNAME
     public function getFirstname()
     {
@@ -95,7 +97,9 @@ class User
           $query->bindValue(":email", $this->Email);
           $query->execute();
           $query->fetch(PDO::FETCH_ASSOC);
-  
+
+
+          //KIJK NA OF ER AL ZO'N EMAIL BESTAAT
           if($query->rowCount() !== 0) { # If rows are found for query
               throw new Exception("Email already exists"); 
           }
@@ -129,19 +133,7 @@ class User
         return $result;
     }
 
-
-    // EMAIL NAKIJKEN OF ER AL 1 BESTAAT 
-    public function checkIfEmailExists($Email){
-
-        // connection
-         global $conn;
-
-       
-
-
-
-    }
-
+    //LOGIN ADMIN
     public function checkIsAdmin()
     {
         global $conn;
@@ -177,5 +169,28 @@ class User
                 return false;
             }
         }
+    }
+
+    // GET ALL THE ADMINS
+
+    public function getAdmins()
+    {
+        global $conn;
+        $statement = $conn->prepare("SELECT * FROM user WHERE isAdmin = 1");
+        $statement->execute();
+        return $statement->fetchAll();
+        global $conn;
+        //$statement = $conn->prepare("SELECT * FROM users WHERE isAdmin = 1");
+        //$statement->bindparam(':isAdmin', $this->Admin);
+        //$statement->execute();
+        //return $statement->fetchColumn();
+    }
+
+    public function deleteAdmin($Admin)
+    {
+        global $conn;
+        $statement = $conn->prepare("DELETE FROM user WHERE :isAdmin");
+        $statement->bindValue(":isAdmin", $Admin);
+        $statement->execute();
     }
 }

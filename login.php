@@ -27,7 +27,7 @@ try {
             }
 
         } else {
-            $error = "Please fill in all fields.";
+            $error = "Please fill in the fields correctly.";
         }
     }
 } catch (Exception $e) {

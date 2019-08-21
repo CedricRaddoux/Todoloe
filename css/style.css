@@ -11,7 +11,7 @@ p {
     color: #1d1d1d;
 }
 
-button {
+.submitbutton {
     display: block;
     width: 150px;
     height: 40px;
@@ -25,9 +25,23 @@ button {
     box-shadow: 0px 10px 20px rgba(72, 52, 212, 0.3);
 }
 
-button:hover{
+.submitbutton:hover{
     background-color: #686de0;
     box-shadow: 0px 10px 20px rgba(72, 52, 212, 0.5);
+}
+
+.deletebutton {
+    display: block;
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    margin: 50px auto;
+    background-color: rgba(255, 85, 85, 0.9);
+    color: white;
+    border: 0px solid;
+    font-size: 15px;
+    letter-spacing: 2px;
+    box-shadow: 0px 10px 20px rgba(255, 85, 85, 0.2);
 }
 
 .logo{
@@ -114,7 +128,7 @@ nav{
 
 nav a{
     display: inline;
-    width: 90px;
+    width: 150px;
     float: left;
     text-decoration: none;
     text-align: center;

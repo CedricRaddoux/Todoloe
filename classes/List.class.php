@@ -72,7 +72,7 @@ class Lists
         $statement = $conn->prepare("SELECT * FROM tasks WHERE list_id = :list_id ORDER BY deadline ASC"); // van laag naar hoog
         $statement->bindValue(":list_id", $list_id);
         $statement->execute();
-        return $statement->fetchColumn();
+        return $statement->fetchAll();
     }
 
     public function deleteList($list_id)

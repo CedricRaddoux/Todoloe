@@ -79,12 +79,6 @@
 
         <button class="submitbutton" type="submit">Add admin</button>
         
-        <div class="form-field">
-            <label for="password">Email admin for deleting the account</label> <br>
-            <input class="inputfields" type="text" name="email_admin">
-        </div>
-
-        <button class="submitbutton" type="submit" name="delete_admin">Delete admin</button>
     </form>
 </div>
 

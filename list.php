@@ -1,7 +1,13 @@
 <?php
 
+session_start();
+        if( !isset($_SESSION['email'])){ //als het niet ge set is
+           header('location: login.php'); 
+        }
+
 include_once("classes/Task.class.php");
 include_once("classes/List.class.php");
+
 
 try {
     $error="";

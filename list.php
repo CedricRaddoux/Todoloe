@@ -73,18 +73,18 @@ $feed = new Lists();
             
         <?php foreach ($feed->getLists() as $l): ?>
         <?php foreach ($feed->getTaskByList($l["id"]) as $task):?>
-                        <p><?php echo $task["title"]; ?></p>
-                        <p><?php echo $task["deadline"]; ?></p>
+
+                <p><b><?php echo $task["title"]; ?></b><?php echo " deadline: " . $task["deadline"]; ?></p>
                     <?php endforeach; ?>
 
                     <!-- Echo de id en name van de kust --> 
-                    <h3><?php echo $l["id"];?><?php echo htmlspecialchars($l["name"]); ?></h3><br>
+                    <h3><?php echo htmlspecialchars($l["name"]); ?></h3><br>
                     <form action="" method="post">
                     <input class="inputfields" type="hidden" name="list_id" value="<?php echo $l["id"];?>">
                     <input class="inputfields" type="text" name="task_title" id="task_title">
                     <input class="inputfields" type="date" name="task_deadline" id="task_deadline">
                     <button class="submitbutton" type="submit" name="add_task">Add task</button>
-                    <button class="submitbutton" type="submit" name="delete_list">Delete list</button>
+                    <button class="deletebutton" type="submit" name="delete_list">Delete list</button>
                     </form>
                 <?php endforeach; ?>
                 

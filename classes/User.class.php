@@ -8,7 +8,7 @@ class User
     private $Lastname;
     private $Email;
     private $Password;
-    private $Admin;
+    private $isAdmin;
 
     // ***** GET & SET ******  //
 
@@ -71,15 +71,15 @@ class User
     // ADMIN
     public function getAdmin()
     {
-        return $this->Admin;
+        return $this->isAdmin;
     }
 
-    public function setAdmin($Admin)
+    public function setAdmin($isAdmin)
     {
-        if ($Admin=="") {
+        if ($isAdmin=="") {
             throw new Exception('Admin can not be empty');
         }
-        $this->Admin = $Admin;
+        $this->isAdmin = $isAdmin;
     }
 
     // REGISTER
@@ -110,7 +110,7 @@ class User
         $statement->bindparam(":lastname", $this->Lastname);
         $statement->bindparam(":email", $this->Email);
         $statement->bindparam(':password', $this->Password);
-        $statement->bindparam(':isAdmin', $this->Admin);
+        $statement->bindparam(':isAdmin', $this->isAdmin);
 
        /* 
        if( strlen($password) > 8){
@@ -180,17 +180,24 @@ class User
         $statement->execute();
         return $statement->fetchAll();
         global $conn;
-        //$statement = $conn->prepare("SELECT * FROM users WHERE isAdmin = 1");
-        //$statement->bindparam(':isAdmin', $this->Admin);
-        //$statement->execute();
-        //return $statement->fetchColumn();
     }
 
-    public function deleteAdmin($Admin)
+    // GET ALL THE USERS
+
+    public function getUsers()
+    {
+        global $conn;
+        $statement = $conn->prepare("SELECT * FROM user WHERE isAdmin = 0");
+        $statement->execute(); 
+        return $statement->fetchAll();
+        global $conn;
+    }
+
+    public function deleteAdmin($isAdmin)
     {
         global $conn;
         $statement = $conn->prepare("DELETE FROM user WHERE :isAdmin");
-        $statement->bindValue(":isAdmin", $Admin);
+        $statement->bindValue(":isAdmin", $isAdmin);
         $statement->execute();
     }
 }

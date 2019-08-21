@@ -1,6 +1,5 @@
 <?php
 
-        include_once("classes/List.class.php");
         include_once("classes/User.class.php");
 
         try {

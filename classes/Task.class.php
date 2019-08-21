@@ -73,9 +73,15 @@ class Task
         $statement = $conn->prepare("INSERT INTO tasks(title, deadline, done, list_id) 
                                     VALUES (:title, :deadline, :done, :list_id)");
 
-        //KIJK NA OF ER AL ZO'N EMAIL BESTAAT
+        //KIJK NA OF ER AL ZO'N TAAK BESTAAT
         if($statement->rowCount() !== 0) { # If rows are found for query
             throw new Exception("There is already a task with that name"); 
+            }
+            elseif($title=="") {
+                throw new Exception('Fill in a title');
+            }
+            elseif($deadline=="") {
+                throw new Exception('Fill in a deadline');
             }
         $statement->bindValue(":title", $title);
         $statement->bindValue(":deadline", $deadline);
